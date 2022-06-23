@@ -1,0 +1,32 @@
+#pragma once
+
+#include <memory>
+
+namespace luanics::logging {
+
+class filter;
+class record;
+class sink;
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///
+/// @class source
+///
+/// @brief Front-end of logging framework.
+///
+/// Accepts logging::record submitted from user, and hands it off to logging::sink.
+///
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+class source {
+public:
+	virtual void submit(std::unique_ptr<record> record) = 0;
+
+	virtual void set_filter(std::unique_ptr<filter> filter) = 0;
+	virtual void set_sink(std::unique_ptr<sink> sink) = 0;
+
+	virtual ~source() {}
+};
+
+}
